@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://upload.wikimedia.org/wikipedia/commons/4/45/IOS_14_Logo.png">
   <!-- Include Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Register</title>
@@ -30,7 +31,7 @@
               </button>
             </form>
             <p class="text-center text-blue-500 cursor-pointer">
-              <a href="#">Đăng ký bằng số điện thoại</a>
+              <a href="/login.php">Đã có tài khoản? Đăng nhập tại đây</a>
             </p>
             <!-- Social  -->
             <div class="mt-16">
@@ -51,7 +52,7 @@
               <p class="text-gray-500 text-xs">
                 Bằng việc tiếp tục, bạn đã đọc và đồng ý với
                 <u>điều khoản sử dụng</u> và <br />
-                <u>Chính sách bảo mật thông tin cá nhân</u> của Tiki
+                <u>Chính sách bảo mật thông tin cá nhân</u> của chúng tôi.
               </p>
             </div>
           </div>
@@ -59,7 +60,7 @@
             <img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" width="203" />
             <div class="content mt-7">
               <h4 class="text-[#0B74E5] font-medium text-base">
-                Mua sắm tại Tiki
+                Mua sắm ngay
               </h4>
               <span class="text-[#0B74E5] font-medium text-sm">Siêu ưu đãi mỗi ngày</span>
             </div>
@@ -74,31 +75,56 @@
   <?php
   // Yêu cầu kết nối database
   require('database.php');
-  // Check if the form was submitted
+
+  // Kiểm tra để đảm bảo email duy nhất
+  function isEmailExist($mysqli, $email)
+  {
+    $query = "SELECT COUNT(*) as total FROM users WHERE email = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    return $row['total'] > 0;
+  }
+
+  // Thêm bản ghi vào bảng users
+  function insertUserData($mysqli, $hoten, $email, $password)
+  {
+    $query = "INSERT INTO users(hoten, email, matkhau) VALUES (?,?,?);";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("sss", $hoten, $email, $password);
+
+    return $stmt->execute();
+  }
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hoten = trim($_POST["hoten"]);
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
-    // Perform data validation and insert into the database
 
     if (!(empty($hoten) || empty($email) || empty($password))) {
-      $query = "INSERT INTO users(hoten, email, matkhau) VALUES (?,?,?);";
-      $stmt = $mysqli->prepare($query);
-      $stmt->bind_param("sss", $hoten, $email, $password);
-
-      if ($stmt->execute()) {
-        header("Location: login.php");
-        exit();
+      if (isEmailExist($mysqli, $email)) {
+        $message = "Email đã tồn tại!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
       } else {
-        exit();
+        if (insertUserData($mysqli, $hoten, $email, $password)) {
+          header("Location: login.php");
+          exit();
+        } else {
+          $message = "Đã có lỗi xảy ra. Vui lòng thử lại.";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
       }
     } else {
       $message = "Vui lòng điền thông tin hợp lệ!";
       echo "<script type='text/javascript'>alert('$message');</script>";
     }
   }
+
   $mysqli->close();
   ?>
+
 </body>
 
 </html>

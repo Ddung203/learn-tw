@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://upload.wikimedia.org/wikipedia/commons/4/45/IOS_14_Logo.png">
   <!-- Include Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Login</title>
@@ -19,15 +20,18 @@
             <img class="block md:hidden" src="https://salt.tikicdn.com/ts/upload/38/1a/0c/c9160ec942ae0348aae9bdad444f6ac5.jpg" alt="login" />
             <span class="mb-10 text-2xl font-medium">Xin chào,</span>
             <p class="mb-5">Nhập email và mật khẩu để đăng nhập</p>
-            <form action="#" autocomplete="off">
-              <input type="text" inputmode="numeric" pattern="[0-9]*" name="tel" maxlength="10" placeholder="Email" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
-              <input type="text" name="password" minlength="3" placeholder="Nhập mật khẩu" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
+
+            <!--  Form login user-->
+
+            <form method="POST" autocomplete="off">
+              <input type="text" name="email" maxlength="255" placeholder="Nhập email" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
+              <input type="password" name="password" placeholder="Nhập mật khẩu" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
               <button class="mt-8 mb-3 outline-none rounded-md bg-red-500 py-3 w-full text-white border-none text-[20px] cursor-pointer hover:opacity-80">
                 Đăng nhập
               </button>
             </form>
             <p class="text-center text-blue-500 cursor-pointer">
-              <a href="#">Đăng nhập bằng số điện thoại</a>
+              <a href="/register.php">Đăng ký tài khoản mới</a>
             </p>
             <!-- Social  -->
             <div class="mt-16">
@@ -48,7 +52,7 @@
               <p class="text-gray-500 text-xs">
                 Bằng việc tiếp tục, bạn đã đọc và đồng ý với
                 <u>điều khoản sử dụng</u> và <br />
-                <u>Chính sách bảo mật thông tin cá nhân</u> của Tiki
+                <u>Chính sách bảo mật thông tin cá nhân</u> của chúng tôi.
               </p>
             </div>
           </div>
@@ -56,7 +60,7 @@
             <img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" width="203" />
             <div class="content mt-7">
               <h4 class="text-[#0B74E5] font-medium text-base">
-                Mua sắm tại Tiki
+                Mua sắm ngay
               </h4>
               <span class="text-[#0B74E5] font-medium text-sm">Siêu ưu đãi mỗi ngày</span>
             </div>
@@ -66,6 +70,45 @@
     </div>
   </div>
   <!-- PHP -->
+  <?php
+  require('database.php');
+  session_start();
+
+  function authenticateUser($mysqli, $email, $password)
+  {
+    $query = "SELECT * FROM `users` WHERE email=? AND matkhau=?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->num_rows;
+
+    return $rows === 1;
+  }
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+
+      if (!empty($email) && !empty($password)) {
+        if (authenticateUser($mysqli, $email, $password)) {
+          $_SESSION['email'] = $email;
+          header("Location: dashboard.php");
+          exit();
+        } else {
+          $message = "Sai email hoặc mật khẩu!";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+      } else {
+        $message = "Vui lòng điền đầy đủ thông tin!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+    }
+  }
+
+  $mysqli->close();
+  ?>
 
 </body>
 
