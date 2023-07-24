@@ -1,120 +1,77 @@
+<!-- Main Stylesheet -->
 <script src="https://cdn.tailwindcss.com"></script>
-
-<div id="footer">
-  <footer class="bg-white dark:bg-gray-900">
-    <div class="mx-auto w-full max-w-screen-xl">
-      <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
-        <div>
-          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-            Company
-          </h2>
-          <ul class="text-gray-500 dark:text-gray-400 font-medium">
-            <li class="mb-4">
-              <a href="#" class="hover:underline">About</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Careers</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Brand Center</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Blog</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-            Help center
-          </h2>
-          <ul class="text-gray-500 dark:text-gray-400 font-medium">
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Discord Server</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Twitter</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Facebook</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-            Legal
-          </h2>
-          <ul class="text-gray-500 dark:text-gray-400 font-medium">
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Privacy Policy</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Licensing</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Terms &amp; Conditions</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-            Download
-          </h2>
-          <ul class="text-gray-500 dark:text-gray-400 font-medium">
-            <li class="mb-4">
-              <a href="#" class="hover:underline">iOS</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Android</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Windows</a>
-            </li>
-            <li class="mb-4">
-              <a href="#" class="hover:underline">MacOS</a>
-            </li>
-          </ul>
-        </div>
+<footer class="bg-[#f0f0f0] text-[#888888]">
+  <div class="w-full max-w-7xl mx-auto px-8">
+    <div class="flex gap-[48px] items-start justify-center  pb-10 pt-[52px]">
+      <div class="basis-[25%]">
+        <a href="#" class="flex items-center gap-3">
+          <img class="block" width="42px" src="https://upload.wikimedia.org/wikipedia/commons/4/45/IOS_14_Logo.png" alt="logo" />
+          <span class="text-red-500 font-semibold">NHÓM 14</span>
+        </a>
+        <p class="mt-2">
+          Đề tài Xây dựng website bán sách. Thực hiện bởi Nhóm 14
+        </p>
       </div>
-      <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
-        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a href="https://flowbite.com/">Flowbite™</a>. All Rights
-          Reserved.
-        </span>
-        <div class="flex mt-4 space-x-5 sm:justify-center md:mt-0">
-          <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-              <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd" />
-            </svg>
-            <span class="sr-only">Facebook page</span>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
-              <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
-            </svg>
-            <span class="sr-only">Discord community</span>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
-              <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd" />
-            </svg>
-            <span class="sr-only">Twitter page</span>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd" />
-            </svg>
-            <span class="sr-only">GitHub account</span>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z" clip-rule="evenodd" />
-            </svg>
-            <span class="sr-only">Dribbble account</span>
-          </a>
-        </div>
+      <div class="basis-[25%]">
+        <h6 class="font-footer font-semibold text-[18px] leading-5 mb-[32px] text-[#000]">Socials</h6>
+        <p>ddung203.contact@gmail.com</p>
+        <ul class="mx-[-0.5rem] mt-4 lg:mt-6 ">
+          <li class="m-2 inline-block leading-4">
+            <a class="group inline-flex w-11 h-11 items-center justify-center rounded-full bg-white text-center transition-all ease-in-out duration-200 hover:bg-[#189eff]" href="#">
+              <svg class="m-auto h-11" width="19" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="group-hover:fill-white" d="M19.1056 10.4495C19.1056 5.09642 15 0.759277 9.9327 0.759277C4.86539 0.759277 0.759766 5.09642 0.759766 10.4495C0.759766 15.2946 4.08865 19.3191 8.49018 20.0224V13.2627H6.15996V10.4495H8.49018V8.33951C8.49018 5.91696 9.85872 4.54939 11.93 4.54939C12.9657 4.54939 14.0013 4.74476 14.0013 4.74476V7.12823H12.8547C11.7081 7.12823 11.3382 7.87063 11.3382 8.65209V10.4495H13.8904L13.4835 13.2627H11.3382V20.0224C15.7398 19.3191 19.1056 15.2946 19.1056 10.4495Z" fill="#222222" />
+              </svg>
+            </a>
+          </li>
+
+          <li class="m-2 inline-block leading-4">
+            <a class="group inline-flex w-11 h-11 items-center justify-center rounded-full bg-white text-center transition-all ease-in-out duration-200 hover:bg-[#189eff]" href="#">
+              <svg class="m-auto h-11" width="19" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="group-hover:fill-white" d="M4.56609 15.2704V5.45315H0.948103V15.2704H4.56609ZM2.73764 4.1398C3.90474 4.1398 4.83841 3.31895 4.83841 2.33394C4.83841 1.38176 3.90474 0.59375 2.73764 0.59375C1.60945 0.59375 0.675781 1.38176 0.675781 2.33394C0.675781 3.31895 1.60945 4.1398 2.73764 4.1398ZM18.0654 15.2704H18.1044V9.8857C18.1044 7.259 17.4041 5.22331 13.7472 5.22331C11.9966 5.22331 10.8295 6.04415 10.3237 6.79933H10.2848V5.45315H6.82246V15.2704H10.4404V10.411C10.4404 9.13053 10.7128 7.91568 12.5801 7.91568C14.4475 7.91568 14.4864 9.36036 14.4864 10.5095V15.2704H18.0654Z" fill="#222222"></path>
+              </svg>
+            </a>
+          </li>
+          <li class="m-2 inline-block leading-4">
+            <a class="group inline-flex w-11 h-11 items-center justify-center rounded-full bg-white text-center transition-all ease-in-out duration-200 hover:bg-[#189eff]" href="#">
+              <svg class="m-auto h-11" width="19" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="group-hover:fill-white" d="M15.3829 10.554C15.4875 10.0381 15.5573 9.48523 15.5573 8.9324C15.5573 4.76772 12.3483 1.37701 8.40687 1.37701C7.88367 1.37701 7.36047 1.45072 6.87215 1.56129C6.20943 1.00846 5.37231 0.676758 4.50031 0.676758C2.33775 0.676758 0.59375 2.55639 0.59375 4.80458C0.59375 5.76282 0.87279 6.64735 1.39599 7.34761C1.29135 7.86359 1.22159 8.41642 1.22159 8.9324C1.22159 13.1339 4.43055 16.5246 8.37199 16.5246C8.89518 16.5246 9.41838 16.4509 9.9067 16.3404C10.5694 16.8932 11.4065 17.188 12.2785 17.188C14.4411 17.188 16.1851 15.3453 16.1851 13.0602C16.22 12.1388 15.9061 11.2543 15.3829 10.554ZM8.61615 13.9447C6.31407 13.9447 4.39567 12.8759 4.39567 11.5491C4.39567 10.9595 4.70959 10.4066 5.44207 10.4066C6.52335 10.4066 6.62799 12.0651 8.51151 12.0651C9.3835 12.0651 9.97646 11.6597 9.97646 11.1069C9.97646 10.4066 9.41838 10.2961 8.51151 10.0749C6.34895 9.48523 4.39567 9.2641 4.39567 6.86849C4.39567 4.65716 6.45359 3.84633 8.19759 3.84633C10.116 3.84633 12.0693 4.65716 12.0693 5.91024C12.0693 6.53679 11.6856 7.08962 11.0229 7.08962C10.0462 7.08962 10.0113 5.83653 8.40687 5.83653C7.49999 5.83653 6.94191 6.09452 6.94191 6.68421C6.94191 7.38446 7.67439 7.45818 9.34862 7.90044C10.7787 8.23214 12.5227 8.85869 12.5227 10.7383C12.5227 12.9128 10.5345 13.9447 8.61615 13.9447Z" fill="#222222"></path>
+              </svg>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="basis-[25%]">
+        <h6 class="font-footer font-semibold text-[18px] leading-5 mb-[32px] text-[#000]">Quick Links</h6>
+        <ul>
+          <li class="flex">
+            <a class="hover:text-[#189eff] hover:underline" href="dashboard.php">Trang chủ</a>
+          </li>
+          <li>
+            <a class="hover:text-[#189eff] hover:underline" href="#">Tài khoản của tôi</a>
+          </li>
+          <li>
+            <a class="hover:text-[#189eff] hover:underline" href="cart.php">Giỏ hàng của tôi</a>
+          </li>
+          <li>
+            <a class="hover:text-[#189eff] hover:underline" href="#">Hỗ trợ khách hàng</a>
+          </li>
+        </ul>
+      </div>
+      <div class="basis-[25%]">
+        <h6 class="font-footer font-semibold text-[18px] leading-5 mb-[32px] text-[#000]">Location & Contact</h6>
+        <p>Số 298 Đ. Cầu Diễn, Minh Khai, Bắc Từ Liêm, Hà Nội</p>
+        <p>0123456789</p>
       </div>
     </div>
-  </footer>
-</div>
+  </div>
+  <div class="container max-w-[1440px]">
+    <div class="footer-copyright mx-auto border-t border-border pb-10 pt-7 text-center">
+      <p>
+        Designed by
+        <a href="#">Themefisher</a> | Edited by
+        <a href="#">DDung203</a>
+      </p>
+    </div>
+  </div>
+</footer>

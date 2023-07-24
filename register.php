@@ -1,3 +1,30 @@
+<!-- PHP -->
+<?php
+require 'database.php';
+require 'utils.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $hoten = htmlspecialchars(trim($_POST["hoten"]));
+  $email = htmlspecialchars(trim($_POST["email"]));
+  $password = trim($_POST["password"]);
+
+  if (empty($hoten) || empty($email) || empty($password)) {
+    $message = "Vui lòng điền thông tin hợp lệ!";
+  } else if (isEmailExist($mysqli, $email)) {
+    $message = "Email đã tồn tại!";
+  } else {
+    if (insertUserData($mysqli, $hoten, $email, $password)) {
+      header("Location: login.php");
+      exit();
+    } else {
+      $message = "Đã có lỗi xảy ra. Vui lòng thử lại.";
+    }
+  }
+  showAlert($message);
+}
+$mysqli->close();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -7,6 +34,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="https://upload.wikimedia.org/wikipedia/commons/4/45/IOS_14_Logo.png">
   <!-- Include Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="tippyCustom.css">
   <title>Register</title>
 </head>
 
@@ -15,8 +43,8 @@
   <!-- Main container -->
   <div id="main">
     <div class="m-0 p-0 box-border">
-      <div class="flex min-h-screen w-full md:items-center justify-center font-sans backdrop-opacity-10 backdrop-invert bg-white/30">
-        <div class="box-border md:rounded-3xl overflow-hidden md:mb-6 m-w-[800px] w-[800px] flex shadow-md">
+      <div class="flex min-h-screen w-full md:items-center justify-center font-sans backdrop-opacity-10 backdrop-invert bg-white">
+        <div class="box-border md:rounded-3xl overflow-hidden md:mb-6 m-w-[800px] w-[800px] flex shadow-l5">
           <div class="md:basis-2/3 xl:p-10 xl:pb-7 p-5 bg-white md:rounded-l-2xl">
             <img class="block md:hidden" src="https://salt.tikicdn.com/ts/upload/38/1a/0c/c9160ec942ae0348aae9bdad444f6ac5.jpg" alt="login" />
             <span class="mb-10 text-2xl font-medium">Tạo tài khoản</span>
@@ -71,60 +99,12 @@
 
   </div>
 
-  <!-- PHP -->
-  <?php
-  // Yêu cầu kết nối database
-  require('database.php');
-
-  // Kiểm tra để đảm bảo email duy nhất
-  function isEmailExist($mysqli, $email)
-  {
-    $query = "SELECT COUNT(*) as total FROM users WHERE email = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    return $row['total'] > 0;
-  }
-
-  // Thêm bản ghi vào bảng users
-  function insertUserData($mysqli, $hoten, $email, $password)
-  {
-    $query = "INSERT INTO users(hoten, email, matkhau) VALUES (?,?,?);";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("sss", $hoten, $email, $password);
-
-    return $stmt->execute();
-  }
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $hoten = trim($_POST["hoten"]);
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
-
-    if (!(empty($hoten) || empty($email) || empty($password))) {
-      if (isEmailExist($mysqli, $email)) {
-        $message = "Email đã tồn tại!";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-      } else {
-        if (insertUserData($mysqli, $hoten, $email, $password)) {
-          header("Location: login.php");
-          exit();
-        } else {
-          $message = "Đã có lỗi xảy ra. Vui lòng thử lại.";
-          echo "<script type='text/javascript'>alert('$message');</script>";
-        }
-      }
-    } else {
-      $message = "Vui lòng điền thông tin hợp lệ!";
-      echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-  }
-
-  $mysqli->close();
-  ?>
-
 </body>
 
 </html>
+
+<?php
+
+include 'footer.php';
+
+?>

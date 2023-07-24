@@ -16,6 +16,7 @@ include("auth_admin.php");
 
   <h1>Đây là trang của Admin</h1>
   <p>Hey, <?php echo $_SESSION['email']; ?>!</p>
+  <p><a href="list_ad.php">List</a></p>
   <p><a href="logout.php">Logout</a></p>
 </body>
 

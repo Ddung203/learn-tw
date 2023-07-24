@@ -1,5 +1,5 @@
-.tippy-box {
-}
+/* .tippy-box {
+} */
 
 .tippy-content {
   padding: 0;
@@ -25,4 +25,8 @@
   line-height: 150%;
   position: absolute;
   padding: 0.5px 4px;
+}
+
+.shadow-l5 {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

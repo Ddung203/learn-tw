@@ -1,12 +1,56 @@
+<!-- PHP -->
+<?php
+require('database.php');
+require('utils.php');
+session_start();
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if (!empty($email) && !empty($password)) {
+      if (Authentication($mysqli, $email, $password)) {
+        Authorization($mysqli, $email);
+        echo $_SESSION['role'] . "16";
+        if ($_SESSION['role']  == 0) {
+          header("Location: dashboard.php");
+          exit();
+        } else {
+          header("Location: admin.php");
+          exit();
+        }
+      } else {
+        $message = "Sai email hoặc mật khẩu!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+    } else {
+      $message = "Vui lòng điền đầy đủ thông tin!";
+      echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+  }
+}
+
+$mysqli->close();
+?>
+<!-- HTML -->
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+
   <link rel="icon" type="image/png" sizes="16x16" href="https://upload.wikimedia.org/wikipedia/commons/4/45/IOS_14_Logo.png">
   <!-- Include Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="tippyCustom.css">
   <title>Login</title>
 </head>
 
@@ -14,8 +58,8 @@
   <!-- Main container -->
   <div id="main">
     <div class="m-0 p-0 box-border">
-      <div class="flex min-h-screen w-full md:items-center justify-center font-sans backdrop-opacity-10 backdrop-invert bg-white/30">
-        <div class="box-border md:rounded-3xl overflow-hidden md:mb-6 m-w-[800px] w-[800px] flex shadow-md">
+      <div class="flex min-h-screen w-full md:items-center justify-center font-sans backdrop-opacity-10 backdrop-invert bg-white">
+        <div class="box-border md:rounded-3xl overflow-hidden md:mb-6 m-w-[800px] w-[800px] flex shadow-l5">
           <div class="md:basis-2/3 xl:p-10 xl:pb-7 p-5 bg-white md:rounded-l-2xl">
             <img class="block md:hidden" src="https://salt.tikicdn.com/ts/upload/38/1a/0c/c9160ec942ae0348aae9bdad444f6ac5.jpg" alt="login" />
             <span class="mb-10 text-2xl font-medium">Xin chào,</span>
@@ -69,47 +113,13 @@
       </div>
     </div>
   </div>
-  <!-- PHP -->
-  <?php
-  require('database.php');
-  session_start();
 
-  function authenticateUser($mysqli, $email, $password)
-  {
-    $query = "SELECT * FROM `users` WHERE email=? AND matkhau=?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("ss", $email, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $rows = $result->num_rows;
 
-    return $rows === 1;
-  }
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['email']) && isset($_POST['password'])) {
-      $email = $_POST['email'];
-      $password = $_POST['password'];
-
-      if (!empty($email) && !empty($password)) {
-        if (authenticateUser($mysqli, $email, $password)) {
-          $_SESSION['email'] = $email;
-          header("Location: dashboard.php");
-          exit();
-        } else {
-          $message = "Sai email hoặc mật khẩu!";
-          echo "<script type='text/javascript'>alert('$message');</script>";
-        }
-      } else {
-        $message = "Vui lòng điền đầy đủ thông tin!";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-      }
-    }
-  }
-
-  $mysqli->close();
-  ?>
-
+  <div id="footer">
+    <?php
+    include "footer.php";
+    ?>
+  </div>
 </body>
 
 </html>
