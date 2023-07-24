@@ -59,13 +59,14 @@ function Authentication($mysqli, $email, $password)
 
 function Authorization($mysqli, $email)
 {
-  $query = "SELECT role FROM `users` WHERE email=?";
+  $query = "SELECT hoten, role FROM `users` WHERE email=?";
   $stmt = $mysqli->prepare($query);
   $stmt->bind_param("s", $email);
   $stmt->execute();
   $result = $stmt->get_result();
   $row = $result->fetch_assoc();
   $_SESSION['email'] = $email;
+  $_SESSION['hoten'] = $row['hoten'];
   $_SESSION['role'] = $row['role'];
 }
 

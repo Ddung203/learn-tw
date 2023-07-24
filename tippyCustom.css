@@ -30,3 +30,6 @@
 .shadow-l5 {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.user-panel {
+  border-bottom: 1px solid #4f5962;
+}
