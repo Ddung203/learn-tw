@@ -1,6 +1,6 @@
 <?php
 session_start();
 
-require "utils.php";
+require "../utils/utils.php";
 
 checkAccessRole(0);

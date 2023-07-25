@@ -1,45 +1,60 @@
 <!-- PHP -->
 <?php
-require 'database.php';
-require 'utils.php';
+require('../database/database.php');
+require "../utils/utils.php";
+session_start();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $hoten = htmlspecialchars(trim($_POST["hoten"]));
-  $email = htmlspecialchars(trim($_POST["email"]));
-  $password = trim($_POST["password"]);
+  if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-  if (empty($hoten) || empty($email) || empty($password)) {
-    $message = "Vui lòng điền thông tin hợp lệ!";
-  } else if (isEmailExist($mysqli, $email)) {
-    $message = "Email đã tồn tại!";
-  } else {
-    if (insertUserData($mysqli, $hoten, $email, $password)) {
-      header("Location: login.php");
-      exit();
+    if (!empty($email) && !empty($password)) {
+      if (Authentication($mysqli, $email, $password)) {
+        Authorization($mysqli, $email);
+        echo $_SESSION['role'] . "16";
+        if ($_SESSION['role']  == 0) {
+          header("Location: ./index.php");
+          exit();
+        } else {
+          header("Location: ../admin/admin.php");
+          exit();
+        }
+      } else {
+        $message = "Sai email hoặc mật khẩu!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+      }
     } else {
-      $message = "Đã có lỗi xảy ra. Vui lòng thử lại.";
+      $message = "Vui lòng điền đầy đủ thông tin!";
+      echo "<script type='text/javascript'>alert('$message');</script>";
     }
   }
-  showAlert($message);
 }
+
 $mysqli->close();
 ?>
-
+<!-- HTML -->
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" sizes="16x16" href="https://upload.wikimedia.org/wikipedia/commons/4/45/IOS_14_Logo.png">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/Nhom_14_Logo.png">
   <!-- Include Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="tippyCustom.css">
-  <title>Register</title>
+  <link rel="stylesheet" href="../assets/css/tippyCustom.css">
+  <title>Login</title>
 </head>
 
 <body>
-
   <!-- Main container -->
   <div id="main">
     <div class="m-0 p-0 box-border">
@@ -47,19 +62,20 @@ $mysqli->close();
         <div class="box-border md:rounded-3xl overflow-hidden md:mb-6 m-w-[800px] w-[800px] flex shadow-l5">
           <div class="md:basis-2/3 xl:p-10 xl:pb-7 p-5 bg-white md:rounded-l-2xl">
             <img class="block md:hidden" src="https://salt.tikicdn.com/ts/upload/38/1a/0c/c9160ec942ae0348aae9bdad444f6ac5.jpg" alt="login" />
-            <span class="mb-10 text-2xl font-medium">Tạo tài khoản</span>
-            <p class="mb-5">Vui lòng nhập email và mật khẩu</p>
-            <!-- Form thông tin -->
-            <form autocomplete="off" method="POST">
-              <input type="text" name="hoten" maxlength="255" placeholder="Nhập họ tên" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
-              <input type="email" name="email" placeholder="Email" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
+            <span class="mb-10 text-2xl font-medium">Xin chào,</span>
+            <p class="mb-5">Nhập email và mật khẩu để đăng nhập</p>
+
+            <!--  Form login user-->
+
+            <form method="POST" autocomplete="off">
+              <input type="text" name="email" maxlength="255" placeholder="Nhập email" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
               <input type="password" name="password" placeholder="Nhập mật khẩu" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
               <button class="mt-8 mb-3 outline-none rounded-md bg-red-500 py-3 w-full text-white border-none text-[20px] cursor-pointer hover:opacity-80">
-                Đăng ký
+                Đăng nhập
               </button>
             </form>
             <p class="text-center text-blue-500 cursor-pointer">
-              <a href="/login.php">Đã có tài khoản? Đăng nhập tại đây</a>
+              <a href="/register.php">Đăng ký tài khoản mới</a>
             </p>
             <!-- Social  -->
             <div class="mt-16">
@@ -96,15 +112,14 @@ $mysqli->close();
         </div>
       </div>
     </div>
-
   </div>
 
+
+  <div id="footer">
+    <?php
+    include "../includes/footer.php";
+    ?>
+  </div>
 </body>
 
 </html>
-
-<?php
-
-include 'footer.php';
-
-?>

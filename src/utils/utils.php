@@ -73,10 +73,10 @@ function Authorization($mysqli, $email)
 function checkAccessRole($requiredRole)
 {
   if (!isset($_SESSION["email"])) {
-    header("Location: login.php");
+    header("Location: ../pages/login.php");
     exit();
   }
-  require('database.php');
+  require('../database/database.php');
   $email = $_SESSION["email"];
   $query = "SELECT role FROM users WHERE email=?";
   $stmt = $mysqli->prepare($query);
@@ -91,7 +91,7 @@ function checkAccessRole($requiredRole)
     if (isset($_COOKIE[session_name()])) {
       setcookie(session_name(), '', time() - 3600, '/');
     }
-    header("Location: login.php");
+    header("Location: ../pages/login.php");
     exit();
   }
 }
