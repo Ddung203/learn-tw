@@ -1,5 +1,8 @@
 <?php
 include("../auth/auth_admin.php");
+include("./admin.controller.php");
+
+$productsData = getProductsData($mysqli);
 ?>
 
 <!doctype html>
@@ -9,20 +12,16 @@ include("../auth/auth_admin.php");
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/Nhom_14_Logo.png">
-  <!-- CDN font-awesome  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- CDN animate css  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
-  <!-- CDN tailwind  -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../assets/css/tippyCustom.css" />
 
-  <title>Admin Page</title>
+  <title>Book List - Admin Page</title>
 </head>
 
 <body>
-  <div id="wapper" class="flex max-w-[100vw]">
+  <div id="wapper" class="flex max-w-[100vw] ">
     <!-- LEFT -->
     <div class="sidebar min-h-screen basis-[250px] w-[234px] px-[8px] bg-[#343a40]">
       <div class="user-panel flex pb-4 my-4 gap-[10px]">
@@ -164,84 +163,51 @@ include("../auth/auth_admin.php");
 
       <section class="p-8 content-hd h-[34px] flex gap-2 my-[5px]">
         <h1 class="font-bold text-2xl basis-1/2 flex justify-start items-center">
-          Dashboard
+          Quản lý sản phẩm
         </h1>
-        <span class="basis-1/2 flex justify-end items-center"><a href="#">Home </a> / <a href="#"> Dashboard</a></span>
+        <span class="basis-1/2 flex justify-end items-center"><a href="#">Home </a> / <a href="#"> Tất cả sản phẩm</a></span>
       </section>
-
       <!-- SECTION CONTENT 1 -->
-      <section class="content px-6 py-4 flex flex-col gap-3 bg-white">
-        <div class=" w-full p-5 bg-white flex justify-between gap-[20px] items-start">
-          <!-- Item 1 -->
-          <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
-            <div class="card-body flex justify-between p-4 m-[10px]">
-              <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
-              </div>
-              <div class="basis-1/3 ">
-                <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
-                </button>
-              </div>
-            </div>
-            <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
-            <div class="card-body flex justify-between p-4 m-[10px]">
-              <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
-              </div>
-              <div class="basis-1/3 ">
-                <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
-                </button>
-              </div>
-            </div>
-            <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
-            <div class="card-body flex justify-between p-4 m-[10px]">
-              <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
-              </div>
-              <div class="basis-1/3 ">
-                <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
-                </button>
-              </div>
-            </div>
-            <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
-            <div class="card-body flex justify-between p-4 m-[10px]">
-              <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
-              </div>
-              <div class="basis-1/3 ">
-                <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
-                </button>
-              </div>
-            </div>
-            <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-          <!-- ./Item1 -->
+      <section class="content  max-w-full  px-6 py-4 flex flex-col gap-3 bg-white">
+        <!-- Product Table -->
+        <div class="w-full p-5 bg-white flex flex-col justify-between gap-[20px] items-start">
+          <h1 class="text-2xl font-bold mb-4">Product Table</h1>
+          <table class="w-full max-w-full border-collapse border border-gray-300">
+            <thead>
+              <tr class="bg-gray-100 w-full ">
+                <th class="px-4 py-2 font-bold border border-gray-300 grow">ProductId</th>
+                <th class="px-4 py-2 font-bold border border-gray-300 grow">ShopName</th>
+                <th class="px-4 py-2 font-bold border border-gray-300 grow">ProductName</th>
+                <th class="px-4 py-2 font-bold border border-gray-300 grow break-all">Description</th>
+                <th class="px-4 py-2 font-bold border border-gray-300 grow">OldPice</th>
+                <th class="px-4 py-2 font-bold border border-gray-300 grow">Price</th>
+                <th class="px-4 py-2 font-bold border border-gray-300 grow">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($productsData as $row) {
+              ?> <tr class="bg-gray-200 hover:bg-gray-300 flexbreak-normal">
+                  <td class="px-4 py-2 border border-gray-300"><?php echo $row['ProductID']; ?></td>
+                  <td class="px-4 py-2 border border-gray-300"><?php echo $row['NameShop']; ?></td>
+                  <td class="px-4 py-2 border border-gray-300"><?php echo $row['ProductName']; ?></td>
+                  <td class="px-4 py-2 border border-gray-300"><?php echo $row['Description']; ?></td>
+                  <td class="px-4 py-2 border border-gray-300"><?php echo $row['OldPrice']; ?></td>
+                  <td class="px-4 py-2 border border-gray-300"><?php echo $row['Price']; ?></td>
+                  <td class="px-4 py-2 border border-gray-300 flex gap-[10px] justify-center">
+                    <!-- Edit and Delete buttons -->
+                    <button><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button><i class="fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+              <?php
+              }
+              ?>
+            </tbody>
+          </table>
         </div>
+      </section>
     </div>
-    </section>
-  </div>
   </div>
 
   <?php

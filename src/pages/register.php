@@ -4,16 +4,16 @@ require '../database/database.php';
 require '../utils/utils.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $hoten = htmlspecialchars(trim($_POST["hoten"]));
+  $UserName = htmlspecialchars(trim($_POST["UserName"]));
   $email = htmlspecialchars(trim($_POST["email"]));
   $password = trim($_POST["password"]);
 
-  if (empty($hoten) || empty($email) || empty($password)) {
+  if (empty($UserName) || empty($email) || empty($password)) {
     $message = "Vui lòng điền thông tin hợp lệ!";
   } else if (isEmailExist($mysqli, $email)) {
     $message = "Email đã tồn tại!";
   } else {
-    if (insertUserData($mysqli, $hoten, $email, $password)) {
+    if (insertUserData($mysqli, $UserName, $email, $password)) {
       header("Location: ./login.php");
       exit();
     } else {
@@ -51,7 +51,7 @@ $mysqli->close();
             <p class="mb-5">Vui lòng nhập email và mật khẩu</p>
             <!-- Form thông tin -->
             <form autocomplete="off" method="POST">
-              <input type="text" name="hoten" maxlength="255" placeholder="Nhập họ tên" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
+              <input type="text" name="UserName" maxlength="255" placeholder="Nhập họ tên" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
               <input type="email" name="email" placeholder="Email" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
               <input type="password" name="password" placeholder="Nhập mật khẩu" class="w-full py-3 border-b border-gray-300 text-2xl text-gray-700 outline-none" />
               <button class="mt-8 mb-3 outline-none rounded-md bg-red-500 py-3 w-full text-white border-none text-[20px] cursor-pointer hover:opacity-80">

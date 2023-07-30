@@ -1,5 +1,27 @@
 <?php
 include("../auth/auth_admin.php");
+include("../database/database.php");
+// require_once("../utils/utils.php");
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $ProductName = $_POST["ProductName"];
+  $Price = $_POST["Price"];
+  $Description = $_POST["Description"];
+  $PublishingCompany = $_POST["PublishingCompany"];
+
+  $IssuingCompanyName = $_POST['IssuingCompanyName'];
+
+  $PageCounts = $_POST["PageCounts"];
+  $CoverType = $_POST["CoverType"];
+  $OldPrice = $_POST["OldPrice"];
+
+  $BookTypeName  = $_POST["BookTypeName"];
+  $NameShop = $_POST["NameShop"];
+
+  insertProductData($mysqli, $ProductName, $Price, $Description, $PublishingCompany, $IssuingCompanyName, $PageCounts, $CoverType, $OldPrice, $BookTypeName, $NameShop);
+}
+
 ?>
 
 <!doctype html>
@@ -9,12 +31,9 @@ include("../auth/auth_admin.php");
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/Nhom_14_Logo.png">
-  <!-- CDN font-awesome  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- CDN animate css  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-  <!-- CDN tailwind  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../assets/css/tippyCustom.css" />
 
@@ -164,83 +183,57 @@ include("../auth/auth_admin.php");
 
       <section class="p-8 content-hd h-[34px] flex gap-2 my-[5px]">
         <h1 class="font-bold text-2xl basis-1/2 flex justify-start items-center">
-          Dashboard
+          Thêm sản phẩm
         </h1>
-        <span class="basis-1/2 flex justify-end items-center"><a href="#">Home </a> / <a href="#"> Dashboard</a></span>
+        <span class="basis-1/2 flex justify-end items-center"><a href="#">Home </a> / <a href="#"> Thêm sản phẩm</a></span>
       </section>
 
       <!-- SECTION CONTENT 1 -->
       <section class="content px-6 py-4 flex flex-col gap-3 bg-white">
         <div class=" w-full p-5 bg-white flex justify-between gap-[20px] items-start">
-          <!-- Item 1 -->
-          <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
-            <div class="card-body flex justify-between p-4 m-[10px]">
-              <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
-              </div>
-              <div class="basis-1/3 ">
-                <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
-                </button>
-              </div>
-            </div>
-            <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
-            <div class="card-body flex justify-between p-4 m-[10px]">
-              <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
-              </div>
-              <div class="basis-1/3 ">
-                <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
-                </button>
-              </div>
-            </div>
-            <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
-            <div class="card-body flex justify-between p-4 m-[10px]">
-              <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
-              </div>
-              <div class="basis-1/3 ">
-                <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
-                </button>
-              </div>
-            </div>
-            <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
-            <div class="card-body flex justify-between p-4 m-[10px]">
-              <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
-              </div>
-              <div class="basis-1/3 ">
-                <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
-                </button>
-              </div>
-            </div>
-            <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-          <!-- ./Item1 -->
+          <!-- FORM ADD NEW PRODUCTS -->
+          <form method="POST" class="w-full flex flex-col justify-between" autocomplete="off">
+            <label for="ProductName">Tên sản phẩm:</label>
+            <input class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" placeholder="Nhập tên sản phẩm" type="text" id="ProductName" name="ProductName" required><br><br>
+
+            <label for="Price">Giá:</label>
+            <input placeholder="Nhập giá bán" class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" type="text" id="Price" name="Price" required><br><br>
+
+            <label for="Description">Mô tả:</label>
+            <textarea class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" id="Description" name="Description" rows="4" cols="50" placeholder="Nhập mô tả sản phẩm" required></textarea><br><br>
+
+            <label for="PublishingCompany">Tên Nhà xuất bản:</label>
+            <input class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" type="text" id="PublishingCompany" name="PublishingCompany" placeholder="Nhập tên nhà xuất bản" required><br><br>
+
+            <label for="IssuingCompanyName">Tên Công ty phát hành:</label>
+            <input class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" type="text" id="IssuingCompanyName" name="IssuingCompanyName" placeholder="Nhập tên Công ty phát hành" required><br><br>
+
+            <label for="PageCounts">Số trang:</label>
+            <input class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" type="text" id="PageCounts" name="PageCounts" placeholder="Nhập số trang" required><br><br>
+
+            <label for="CoverType">Loại bìa:</label>
+            <select class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" id="CoverType" name="CoverType" required>
+              <option value="Bìa mềm">Bìa mềm</option>
+              <option value="Bìa cứng">Bìa cứng</option>
+            </select><br><br>
+
+            <label for="OldPrice">Giá cũ:</label>
+            <input placeholder="Nhập giá gốc" class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" type="text" id="OldPrice" name="OldPrice" required><br><br>
+
+            <label for="BookTypeName">Loại sách:</label>
+            <input class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" type="text" id="BookTypeName" name="BookTypeName" placeholder="Nhập loại sách" required><br><br>
+
+            <label for="NameShop">Tên Shop:</label>
+            <input class="outline-[#bcbcbc] px-2 py-1 border border-slate-600" type="text" id="NameShop" name="NameShop" placeholder="Nhập loại sách" required><br><br>
+
+            <button class="border px-3 py-[6px] hover:bg-[#343a40] hover:text-[#fff]" type="submit">Thêm sản phẩm</button>
+          </form>
+          <!-- FORM ADD NEW PRODUCTS -->
+
         </div>
     </div>
     </section>
+    <!-- END S1 -->
   </div>
   </div>
 

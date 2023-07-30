@@ -16,7 +16,7 @@ include("../auth/auth_user.php");
 
   <h1>Đây là trang CART</h1>
   <p>Hey, <?php echo $_SESSION['email']; ?>!</p>
-  <p><a href="logout.php">Logout</a></p>
+  <p><a href="./logout.php">Logout</a></p>
 
   <?php
   include "../includes/footer.php";

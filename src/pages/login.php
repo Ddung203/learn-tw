@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($email) && !empty($password)) {
       if (Authentication($mysqli, $email, $password)) {
         Authorization($mysqli, $email);
-        echo $_SESSION['role'] . "16";
         if ($_SESSION['role']  == 0) {
           header("Location: ./index.php");
           exit();
