@@ -47,7 +47,6 @@ include("../auth/auth_admin.php");
       </div>
       <!-- Bottom slidebar -->
       <nav class="mt-2 flex flex-col justify-between">
-        <!-- List -->
         <!-- Dashboard -->
         <ul class="feature flex flex-col">
           <li class="nav-item flex w-full">
@@ -60,18 +59,28 @@ include("../auth/auth_admin.php");
             </a>
           </li>
 
-          <!-- Quản lý người dùng -->
-          <li class="nav-item flex w-full">
+          <!-- 1. Quản lý người dùng -->
+          <li class="nav-item flex w-full  flex-col">
             <a href="#" class="nav-link w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
-              <!-- <i class="nav-icon fas fa-th" aria-hidden="true"></i> -->
               <i class="fa-solid fa-users-gear"></i>
               <p>
                 Quản lý người dùng
                 <!-- <i class="right fas fa-angle-right"></i> -->
               </p>
             </a>
+
+            <!-- UL CHỨC NĂNG QUẢN LÝ NGƯỜI DÙNG -->
+            <ul class="nav nav-treeview" style="display: block;">
+              <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
+                <a href="./user_list.php" class="nav-link flex items-center justify-center gap-[10px] pl-4">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách người dùng</p>
+                  <!-- GET ALL PRODUCTS -->
+                </a>
+              </li>
+            </ul>
           </li>
-          <!-- Quản lý danh mục -->
+          <!-- 2. Quản lý danh mục -->
           <li class="nav-item flex w-full">
             <a href="#" class="nav-link w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
               <i class="nav-icon fas fa-th" aria-hidden="true"></i>
@@ -92,36 +101,9 @@ include("../auth/auth_admin.php");
             </a>
 
             <!-- UL CHỨC NĂNG QUẢN LÝ -->
-            <ul class="nav nav-treeview" style="display: block;">
-              <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
-                <a href="./bookList.php" class="nav-link flex items-center justify-center gap-[10px] pl-4">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tất cả sản phẩm</p>
-                  <!-- GET ALL PRODUCTS -->
-                </a>
-              </li>
-              <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
-                <a href="./addNewBook.php" class="nav-link flex items-center justify-center gap-[10px] pl-4">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm sản phẩm</p>
-                  <!-- POST NEW PRODUCT -->
-                </a>
-              </li>
-              <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
-                <a href="#" class="nav-link flex items-center justify-center gap-[10px] pl-4">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Editors</p>
-                </a>
-              </li>
-              <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
-                <a href="#" class="nav-link flex items-center justify-center gap-[10px] pl-4">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li>
-            </ul>
+
           </li>
-          <!-- Quản lý đơn hàng -->
+          <!-- 4. Quản lý đơn hàng -->
           <li class="nav-item flex w-full">
             <a href="#" class="nav-link w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
               <i class="nav-icon fas fa-edit" aria-hidden="true"></i>

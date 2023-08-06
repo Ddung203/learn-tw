@@ -1,8 +1,8 @@
 <!-- PHP -->
 <?php
+session_start();
 require('../database/database.php');
 require "../utils/utils.php";
-session_start();
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -74,7 +74,7 @@ $mysqli->close();
               </button>
             </form>
             <p class="text-center text-blue-500 cursor-pointer">
-              <a href="/register.php">Đăng ký tài khoản mới</a>
+              <a href="./register.php">Đăng ký tài khoản mới</a>
             </p>
             <!-- Social  -->
             <div class="mt-16">

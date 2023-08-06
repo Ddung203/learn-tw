@@ -1,5 +1,5 @@
 <?php
-
+// require "../database/database.php";
 function showAlert($message)
 {
   echo "<script type='text/javascript'>alert('$message');</script>";
@@ -36,7 +36,7 @@ function isEmailExist($mysqli, $email)
 
 function insertUserData($mysqli, $UserName, $email, $password)
 {
-  $query = "INSERT INTO users(UserName, email, matkhau) VALUES (?,?,?);";
+  $query = "INSERT INTO users(UserName, email, password) VALUES (?,?,?);";
   $stmt = $mysqli->prepare($query);
   $stmt->bind_param("sss", $UserName, $email, $password);
 
@@ -72,7 +72,7 @@ function checkAccessRole($requiredRole)
     exit();
   }
   $email = $_SESSION["email"];
-  require_once '../database/database.php';
+  require '../database/database.php';
   $query = "SELECT role FROM users WHERE email=?";
   $stmt = executePreparedStatement($mysqli, $query, "s", $email);
   $result = $stmt->get_result();
@@ -95,22 +95,6 @@ function unsetUserSession()
   }
 }
 
-// Function to insert product data into the database
-function insertProductData($mysqli, $ProductName, $Price, $Description, $PublishingCompany, $IssuingCompanyName, $PageCounts, $CoverType, $OldPrice, $BookTypeName, $NameShop)
-{
-  $IssuingCompanyID = getEntityID($mysqli, "issuingcompany", "IssuingCompanyName", $IssuingCompanyName);
-  $BookTypeID = getEntityID($mysqli, "booktype", "BookTypeName", $BookTypeName);
-  $ShopID = getEntityID($mysqli, "shop", "NameShop", $NameShop);
-
-  $query = "INSERT INTO products (ProductName, Price, Description, PublishingCompany, IssuingCompanyID, PageCounts, CoverType, OldPrice, BookTypeID, ShopID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-  $result = executePreparedStatement($mysqli, $query, "sdssidiisi", $ProductName, $Price, $Description, $PublishingCompany, $IssuingCompanyID, $PageCounts, $CoverType, $OldPrice, $BookTypeID, $ShopID);
-
-  if ($result) {
-    showAlert("Product inserted successfully!");
-  } else {
-    showAlert("Error inserting product: " . $mysqli->error);
-  }
-}
 
 // Function to get entity ID from the database
 function getEntityID($mysqli, $table, $columnName, $value)
