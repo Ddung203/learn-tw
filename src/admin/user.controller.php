@@ -19,6 +19,21 @@ function getUserList($mysqli)
   return $userList;
 }
 
+function getDataForDashboard($mysqli, $table)
+{
+  $query = "SELECT COUNT(*) AS row_count FROM $table"; // Sử dụng AS để đặt tên cho cột tính tổng số hàng
+  $stmt = $mysqli->prepare($query);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  if ($result && $row = $result->fetch_assoc()) {
+    return $row['row_count']; // Trả về số hàng từ cột đã đặt tên
+  } else {
+    return 0; // Trả về 0 nếu có lỗi hoặc không có dữ liệu
+  }
+}
+
+
 // Function to delete a user by userID
 function deleteUser($userID, $mysqli)
 {

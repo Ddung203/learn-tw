@@ -1,5 +1,5 @@
 <?php
-include("../auth/auth_admin.php");
+require "./user.controller.php";
 ?>
 
 <!doctype html>
@@ -158,17 +158,17 @@ include("../auth/auth_admin.php");
           <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">
             <div class="card-body flex justify-between p-4 m-[10px]">
               <div class="basis-2/3 text-[#bec8d5] ">
-                <p class="text-[32px] font-bold pt-[3px]">32</p>
-                <p class="pr-[15px]">Pending Order</p>
+                <p class="text-[32px] font-bold pt-[3px]"><?php echo getDataForDashboard($mysqli, "users");  ?></p>
+                <p class="pr-[15px]">Số lượng <br> tài khoản</p>
               </div>
               <div class="basis-1/3 ">
                 <button class="p-4 px-[17px] bg-[#253041] rounded-3xl">
-                  <a href="#"><i class="fa-regular fa-gem text-[32px] text-[#bec8d5]"></i></a>
+                  <a href="./user_list.php"><i class="fa-solid fa-users-gear text-[32px] text-[#bec8d5]"></i></a>
                 </button>
               </div>
             </div>
             <div class="card-footer bg-[#253041] text-[#bec8d5] py-[10px] px-[20px]">
-              <a href="#">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
+              <a href="./user_list.php">View all <i class="fa-solid fa-circle-arrow-right"></i></a>
             </div>
           </div>
           <div class="card animate__animated animate__fadeInDown bg-[#1f2937] rounded-[10px] overflow-hidden">

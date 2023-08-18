@@ -2,6 +2,7 @@
 include("./user.controller.php");
 include '../database/database.php';
 $userList = getUserList($mysqli);
+
 ?>
 
 <!doctype html>
@@ -69,7 +70,7 @@ $userList = getUserList($mysqli);
 
             <!-- UL CHỨC NĂNG QUẢN LÝ NGƯỜI DÙNG -->
             <ul class="nav nav-treeview" style="display: block;">
-              <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
+              <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center bg-[#494e53]">
                 <a href="./user_list.php" class="nav-link flex items-center justify-center gap-[10px] pl-4">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh sách người dùng</p>
@@ -188,7 +189,7 @@ $userList = getUserList($mysqli);
                   </td>
                   <td class="px-4 py-2 border border-gray-300 flex gap-[10px] justify-center">
                     <!-- Edit -->
-                    <a href="./update_user.php?UserID=<?php echo $row['UserID']; ?>">
+                    <a href="./upgrade.php?UserID=<?php echo $row['UserID']; ?>">
                       <i class="fa-solid fa-edit"></i>
                     </a>
 

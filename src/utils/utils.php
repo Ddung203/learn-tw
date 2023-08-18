@@ -34,11 +34,11 @@ function isEmailExist($mysqli, $email)
   return $row['total'] > 0;
 }
 
-function insertUserData($mysqli, $UserName, $email, $password)
+function insertUserData($mysqli, $UserName, $address, $phone, $email, $password)
 {
-  $query = "INSERT INTO users(UserName, email, password) VALUES (?,?,?);";
+  $query = "INSERT INTO users(UserName, email,phone,address, password) VALUES (?,?,?,?,?);";
   $stmt = $mysqli->prepare($query);
-  $stmt->bind_param("sss", $UserName, $email, $password);
+  $stmt->bind_param("sssss", $UserName, $email, $phone, $address, $password);
 
   return $stmt->execute();
 }
