@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           header("Location: ./index.php");
           exit();
         } else {
-          header("Location: ../admin/admin.php");
+          header("Location: ../admin/dung_admin.php");
           exit();
         }
       } else {

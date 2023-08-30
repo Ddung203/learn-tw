@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['userID'])) {
 
   echo $userID;
 
-  header('Location: user_list.php');
+  header('Location: dung_user_list.php');
   exit;
 }
 

@@ -1,5 +1,5 @@
 <?php
-// require "../database/database.php";
+require "../database/database.php";
 function showAlert($message)
 {
   echo "<script type='text/javascript'>alert('$message');</script>";
@@ -55,11 +55,12 @@ function Authentication($mysqli, $email, $password)
 // Function to set user session after successful authentication
 function Authorization($mysqli, $email)
 {
-  $query = "SELECT UserName, role FROM `users` WHERE email=?";
+  $query = "SELECT UserID, UserName, role FROM `users` WHERE email=?";
   $stmt = executePreparedStatement($mysqli, $query, "s", $email);
   $result = $stmt->get_result();
   $row = $result->fetch_assoc();
   $_SESSION['email'] = $email;
+  $_SESSION['UserID'] = $row['UserID'];
   $_SESSION['UserName'] = $row['UserName'];
   $_SESSION['role'] = $row['role'];
 }
@@ -113,4 +114,77 @@ function executePreparedStatement($mysqli, $query, $types, ...$params)
   $stmt->bind_param($types, ...$params);
   $stmt->execute();
   return $stmt;
+}
+
+
+
+function discount($price, $oldPrice)
+{
+  $a = $oldPrice - $price;
+  $discount = ($a / $oldPrice) * 100;
+  return round($discount);
+}
+
+function convertMoney($money)
+{
+  if ($money >= 1000 && is_numeric($money)) {
+    $formattedNumber = number_format($money, 0, '.', '.');
+    return $formattedNumber;
+  }
+  return $money . ".000đ";
+}
+
+function convertSoldOut($soldOutCount)
+{
+  if ($soldOutCount >= 1000 && is_numeric($soldOutCount)) {
+
+    return round($soldOutCount / 1000, 1) . 'k';
+  }
+
+  return $soldOutCount;
+}
+
+function handleQuerySQL($page)
+{
+  $booktypeid = isset($_GET["booktypeid"]) ? $_GET["booktypeid"] : null;
+  $ShopID = isset($_GET["ShopID"]) ? $_GET["ShopID"] : null;
+  $minPrice = isset($_GET["minPrice"]) ? $_GET["minPrice"] : null;
+  $maxPrice = isset($_GET["maxPrice"]) ? $_GET["maxPrice"] : null;
+  $star = isset($_GET["star"]) ? $_GET["star"] : null;
+  $q = isset($_GET["q"]) ? $_GET["q"] : null;
+  $sql = "select * from products ";
+
+  if (!is_null($q) || !is_null($booktypeid) || !is_null($ShopID) || !is_null($maxPrice) || !is_null($minPrice) || !is_null($star)) $sql .= " where ";
+
+  if (!is_null($q)) $sql .= "ProductName like '%$q%' ";
+  if (!is_null($booktypeid)) {
+    if (!is_null($q)) {
+
+      $sql .= " and BookTypeID = $booktypeid ";
+    } else  $sql .= "BookTypeID = $booktypeid ";
+  }
+  if (!is_null($ShopID)) {
+    if (!is_null($booktypeid) || !is_null($q))  $sql .= "and ShopID = $ShopID ";
+    else  $sql .= " ShopID = $ShopID ";
+  }
+  if (!is_null($maxPrice) || !is_null($minPrice)) {
+    if (!is_null($ShopID) || !is_null($booktypeid) || !is_null($q)) {
+      if (is_null($minPrice)) $sql .= " and Price < $maxPrice ";
+      else $sql .= "and Price between $minPrice and $maxPrice ";
+    } else $sql .= " Price between $minPrice and $maxPrice ";
+  }
+  if (!is_null($star)) {
+    if (!is_null($ShopID) || !is_null($booktypeid) || !is_null($maxPrice) || !is_null($minPrice) || !is_null($q)) {
+      $sql .= " and Star >= $star ";
+    } else {
+      $sql .= " Star >= $star ";
+    }
+  }
+  if (!is_null($page)) {
+    $dongbatdau = 8 * ($page - 1);
+    $sql .=  "  LIMIT $dongbatdau , 8";
+  }
+
+
+  return $sql;
 }
