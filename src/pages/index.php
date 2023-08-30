@@ -11,7 +11,7 @@ include "../database/database.php";
   <title>Document</title>
   <link href="./dist/output.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/tippyCustom.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 
 <body>

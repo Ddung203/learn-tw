@@ -91,8 +91,23 @@
           </p>
         </a>
 
-        <!-- UL CHỨC NĂNG QUẢN LÝ -->
+        <!-- 4.1.  -->
+        <ul class="nav nav-treeview" style="display: block;">
+          <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
+            <a href="./dao_readAllProducts.php" class="nav-link flex items-center justify-center gap-[10px] pl-4">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Tất cả sản phẩm</p>
+            </a>
+          </li>
+          <li class="nav-item w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
+            <a href="./dao_addProducts.php" class="nav-link flex items-center justify-center gap-[10px] pl-4">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Thêm sản phẩm</p>
+            </a>
+          </li>
 
+
+        </ul>
       </li>
       <!-- 4. Quản lý đơn hàng -->
       <li class="nav-item flex w-full">
@@ -100,6 +115,16 @@
           <i class="nav-icon fas fa-edit" aria-hidden="true"></i>
           <p>
             Quản lý đơn hàng
+            <!-- <i class="right fas fa-angle-right"></i> -->
+          </p>
+        </a>
+      </li>
+      <!-- 5.Quản lý voucher -->
+      <li class="nav-item flex w-full">
+        <a href="#" class="nav-link w-full rounded-md flex gap-2 px-[16px] py-[8px] text-[#c2c7d0] items-center hover:bg-[#494e53]">
+          <i class="nav-icon fas fa-edit" aria-hidden="true"></i>
+          <p>
+            Quản lý Voucher
             <!-- <i class="right fas fa-angle-right"></i> -->
           </p>
         </a>
